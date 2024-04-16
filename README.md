@@ -5,11 +5,7 @@
 
 
 
-A project template for Orbs.
-
-This repository is designed to be automatically ingested and modified by the CircleCI CLI's `orb init` command.
-
-_**Edit this area to include a custom title and description.**_
+This project is intended to wrap [standard-app-secret-generation](https://github.com/mednax-it/standard-app-secret-generation) in a orb to simplify use.  Additional readme edits will come as we build functionality.
 
 ---
 
