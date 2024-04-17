@@ -11,5 +11,6 @@ echo "Resource Group Name = ${TF_VAR_resource_group_name}!"
 echo "Key Vault Name = ${TF_VAR_key_vault_name}!"
 echo "Key Name = ${TF_VAR_key_name}!"
 
+git clone git@github.com:mednax-it/standard-app-secret-generation.git
 terraform -chdir=./standard-app-secret-generation init
 terraform -chdir=./standard-app-secret-generation apply -auto-approve
