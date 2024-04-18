@@ -5,7 +5,7 @@
 
 
 
-This project is intended to wrap [standard-app-secret-generation](https://github.com/mednax-it/standard-app-secret-generation) in a orb to simplify use.  Additional readme edits will come as we build functionality.
+This project is intended to wrap [standard-app-secret-generation](https://github.com/mednax-it/standard-app-secret-generation) in a orb to simplify use.  The orb is intended to only do a git checkout, terraform init, and terraform apply.  Additional readme edits will come as we build functionality.
 
 ---
 
