@@ -33,10 +33,11 @@ jobs:
       - checkout
       # Run your orb's commands to validate them.
       - standard-app-secret-orb/create_secret:
-          app_registration_id: 'example_app_registration_id'
-          resource_group_name: 'example_resource_group_name'
-          key_vault_name: 'example_key_vault_name'
+          app_registration_id: '424ed44e-8bf6-48ca-9150-cf03c9447ba1'
+          resource_group_name: 'SandboxSS-rg'
+          key_vault_name: 'examplekeyvaulttesting'
           key_name: 'example_key_name'
+          subscription: 'Sandbox'
 
 workflows:
   test-deploy:
