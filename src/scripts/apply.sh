@@ -36,5 +36,4 @@ export TF_VAR_key_name
 
 git clone git@github.com:mednax-it/standard-app-secret-generation.git
 terraform -chdir=./standard-app-secret-generation init
-terraform -chdir=./standard-app-secret-generation plan # This is only temporary to validate the orb since we've never done this before
-#terraform -chdir=./standard-app-secret-generation apply -auto-approve
+terraform -chdir=./standard-app-secret-generation apply -auto-approve
