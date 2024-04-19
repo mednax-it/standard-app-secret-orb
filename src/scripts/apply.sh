@@ -14,40 +14,8 @@ fi
 
 apk add py3-pip
 apk add gcc musl-dev python3-dev libffi-dev openssl-dev cargo make
-pip install --upgrade pip
-pip install azure-cli
-
-#apt-get update && apt-get -qqy install apt-transport-https
-
-# if [[ $(command -v lsb_release) == "" ]]; then
-#   echo "Installing lsb_release"
-#   $SUDO apt-get -qqy install lsb-release
-# fi
-#
-# # Create an environment variable for the correct distribution
-# AZ_REPO=$(lsb_release -cs)
-# export AZ_REPO
-#
-# # Modify your sources list
-#
-# echo "deb [arch=amd64] https://packages.microsoft.com/repos/azure-cli/ $AZ_REPO main" | \
-#   $SUDO tee /etc/apt/sources.list.d/azure-cli.list
-#
-# if [[ $(command -v curl) == "" ]]; then
-#   echo "Installing curl"
-#   $SUDO apt-get -qqy install curl
-# fi
-#
-# # Get the Microsoft signing key
-#
-# curl -L https://packages.microsoft.com/keys/microsoft.asc | $SUDO apt-key add -
-#
-# # Update and install the Azure CLI
-#
-# $SUDO apt-get update
-# $SUDO apt-get -qqy install \
-#   ca-certificates \
-#   azure-cli
+pip install --break-system-packages --upgrade pip
+pip install --break-system-packages azure-cli
 echo "Azure CLI is now installed."
 
 echo "Logging in to az cli"
