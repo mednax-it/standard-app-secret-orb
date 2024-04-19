@@ -6,6 +6,10 @@ orbs:
   # The orb definition is intentionally not included here. It will be injected into the pipeline.
   standard-app-secret-orb: {}
 
+deploy_parameters: &deploy_parameters
+  context:
+    - mednax-global
+
 # Use this tag to ensure test jobs always run,
 # even though the downstream publish job will only run on release tags.
 filters: &filters
@@ -41,6 +45,7 @@ workflows:
       # Test your orb's commands in a custom job and test your orb's jobs directly as a part of this workflow.
       - command-test:
           filters: *filters
+          <<: *deploy_parameters
       # The orb must be re-packed for publishing, and saved to the workspace.
       - orb-tools/pack:
           filters: *release-filters

@@ -1,0 +1,8 @@
+description: >
+  Common Azure Login Steps
+
+steps:
+  - run:
+      name: Azure CLI Install
+      command: <<include(scripts/az_login.sh)>>
+      no_output_timeout: 15m
