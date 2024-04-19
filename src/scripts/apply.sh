@@ -16,7 +16,7 @@ fi
 
 if [[ $EUID == 0 ]]; then export SUDO=""; else export SUDO="sudo"; fi
 
-$SUDO apt-get update && $SUDO apt-get -qqy install apt-transport-https
+apt-get update && apt-get -qqy install apt-transport-https
 
 if [[ $(command -v lsb_release) == "" ]]; then
   echo "Installing lsb_release"
