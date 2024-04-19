@@ -29,10 +29,10 @@ jobs:
       - checkout
       # Run your orb's commands to validate them.
       - standard-app-secret-orb/create_secret:
-          app_registration_id_param: 'example_app_registration_id'
-          resource_group_name_param: 'example_resource_group_name'
-          key_vault_name_param: 'example_key_vault_name'
-          key_name_param: 'example_key_name'
+          app_registration_id: 'example_app_registration_id'
+          resource_group_name: 'example_resource_group_name'
+          key_vault_name: 'example_key_vault_name'
+          key_name: 'example_key_name'
 
 workflows:
   test-deploy:
