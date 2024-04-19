@@ -1,7 +1,0 @@
-description: >
-  Common Azure Login Steps
-
-steps:
-  - run:
-      name: Log into Azure
-      command: <<include(scripts/az_login.sh)>>

@@ -7,20 +7,19 @@
 # Use which instead of command -v for wider coverage of envs
 set -e
 
-if which az > /dev/null; then
+if which az > /dev/null;
+then
   echo "Azure CLI installed already."
-  exit 0
+else
+  apk add py3-pip
+  apk add gcc musl-dev python3-dev libffi-dev openssl-dev cargo make
+  pip install --break-system-packages --upgrade pip
+  pip install --break-system-packages azure-cli
+  echo "Azure CLI is now installed."
 fi
 
-apk add py3-pip
-apk add gcc musl-dev python3-dev libffi-dev openssl-dev cargo make
-pip install --break-system-packages --upgrade pip
-pip install --break-system-packages azure-cli
-echo "Azure CLI is now installed."
-
 echo "Logging in to az cli"
-az login \
-    --service-principal \
+az login --service-principal \
     --tenant "$AZURE_SP_TENANT" \
     -u "$AZURE_SP" \
     -p "$AZURE_SP_PASSWORD"
