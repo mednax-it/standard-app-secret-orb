@@ -2,9 +2,9 @@
 # This uses envsubst to support variable substitution in the string parameter type.
 # https://circleci.com/docs/orbs-best-practices/#accepting-parameters-as-strings-or-environment-variables
 
-# shellcheck source=./az_install.sh
+# shellcheck source=az_install.sh
 source ./az_install.sh
-# shellcheck source=./az_login.sh
+# shellcheck source=az_login.sh
 source ./az_login.sh
 
 TF_VAR_app_registration_id=$(circleci env subst "${PARAM_APP_REGISTRATION_ID}")
