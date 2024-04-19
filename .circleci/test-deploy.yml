@@ -36,7 +36,7 @@ jobs:
           app_registration_id: '424ed44e-8bf6-48ca-9150-cf03c9447ba1'
           resource_group_name: 'SandboxSS-rg'
           key_vault_name: 'examplekeyvaulttesting'
-          key_name: 'example_key_name'
+          key_name: 'example-key-name'
           subscription: 'Sandbox'
 
 workflows:
