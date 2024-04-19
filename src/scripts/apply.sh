@@ -16,7 +16,12 @@ fi
 
 if [[ $EUID == 0 ]]; then export SUDO=""; else export SUDO="sudo"; fi
 
-apt-get update && apt-get -qqy install apt-transport-https
+apk add py3-pip
+apk add gcc musl-dev python3-dev libffi-dev openssl-dev cargo make
+pip install --upgrade pip
+pip install azure-cli
+
+#apt-get update && apt-get -qqy install apt-transport-https
 
 # if [[ $(command -v lsb_release) == "" ]]; then
 #   echo "Installing lsb_release"
