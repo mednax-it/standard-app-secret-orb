@@ -12,10 +12,6 @@ if which az > /dev/null; then
   exit 0
 fi
 
-# Set sudo to work whether logged in as root user or non-root user
-
-if [[ $EUID == 0 ]]; then export SUDO=""; else export SUDO="sudo"; fi
-
 apk add py3-pip
 apk add gcc musl-dev python3-dev libffi-dev openssl-dev cargo make
 pip install --upgrade pip
