@@ -34,11 +34,6 @@ export TF_VAR_resource_group_name
 export TF_VAR_key_vault_name
 export TF_VAR_key_name
 
-echo "App Registration = ${TF_VAR_app_registration_id}!"
-echo "Resource Group Name = ${TF_VAR_resource_group_name}!"
-echo "Key Vault Name = ${TF_VAR_key_vault_name}!"
-echo "Key Name = ${TF_VAR_key_name}!"
-
 git clone git@github.com:mednax-it/standard-app-secret-generation.git
 terraform -chdir=./standard-app-secret-generation init
 terraform -chdir=./standard-app-secret-generation plan # This is only temporary to validate the orb since we've never done this before
