@@ -28,7 +28,10 @@ jobs:
   # You may want to add additional validation steps to ensure the commands are working as expected.
   command-test:
     docker:
-      - image: 'hashicorp/terraform:1.8.1'
+      - image: 'mednax/python-base-orb-image:latest'
+        auth:
+            username: $REPO_USER
+            password: $REPO_PW
     steps:
       - run:
           command: echo "$AZURE_SP_TENANT"
@@ -40,9 +43,9 @@ jobs:
           key_vault_name: 'examplekeyvaulttesting'
           key_name: 'example-key-name'
           subscription: 'Sandbox'
-          azure_tenant: $AZURE_SP_TENANT
-          azure_service_principle: $AZURE_SP
-          azure_service_principle_password: $AZURE_SP_PASSWORD
+          azure_tenant: "$AZURE_SP_TENANT"
+          azure_service_principle: "$AZURE_SP"
+          azure_service_principle_password: "$AZURE_SP_PASSWORD"
 
 workflows:
   test-deploy:
