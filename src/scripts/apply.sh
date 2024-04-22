@@ -18,12 +18,18 @@ else
   echo "Azure CLI is now installed."
 fi
 
+AZURE_TENANT=$(circleci env subst "${AZURE_TENANT}")
+AZURE_SERVICE_PRINCIPLE=$(circleci env subst "${AZURE_SERVICE_PRINCIPLE}")
+AZURE_SERVICE_PRINCIPLE_PASSWORD=$(circleci env subst "${AZURE_SERVICE_PRINCIPLE_PASSWORD}")
+export AZURE_TENANT
+export AZURE_SERVICE_PRINCIPLE
+export AZURE_SERVICE_PRINCIPLE_PASSWORD
 
 echo "Logging in to az cli"
 az login --service-principal \
-    --tenant $(circleci env subst "${AZURE_TENANT}" \
-    -u $(circleci env subst "${AZURE_SERVICE_PRINCIPLE}" \
-    -p $(circleci env subst "${AZURE_SERVICE_PRINCIPLE_PASSWORD}"
+    --tenant "$AZURE_TENANT" \
+    -u "$AZURE_SERVICE_PRINCIPLE" \
+    -p "$AZURE_SERVICE_PRINCIPLE_PASSWORD"
 az account set --subscription "$SUBSCRIPTION"
 
 
