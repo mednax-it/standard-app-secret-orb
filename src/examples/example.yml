@@ -1,13 +1,22 @@
 description: >
-  Sample example description.
-# Provide a use-case based example for using this orb.
-# Everything in the `usage` section will be displayed in the orb registry.
-# Comments are not retained.
+  Generate and store a custom secret.
 usage:
   version: 2.1
   orbs:
-    <orb-name>: <namespace>/<orb-name>@1.2.3
+    standard-app-secret-orb: mednax/standard-app-secret-orb@<<version-number>>
+  # Make sure to grab deploy parameters that should contain
+  # your applications azure login credentials.  I don't currently like this!
+  # I think they should be explicitly passed in.
+  deploy_parameters: &deploy_parameters
+    context:
+      - 'your-context'
   workflows:
-    use-my-orb:
+    secret-generation-example:
       jobs:
-        - <orb-name>/<job-name>
+        - standard-app-secret-orb/create_secret:
+            <<: *deploy_parameters
+            app_registration_id: 'example-app-registration-client-id'
+            resource_group_name: 'example-resource-group'
+            key_vault_name: 'example-key-vault-name'
+            key_name: 'example-key-name'
+            subscription: 'example-subscription'
