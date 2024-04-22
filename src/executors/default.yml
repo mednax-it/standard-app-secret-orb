@@ -4,5 +4,5 @@ description: >
 docker:
   - image: 'mednax.azurecr.io/mednax/python-base-orb-image:latest'
     auth:
-        username: $REPO_USER
-        password: $REPO_PW
+        username: "$REPO_USER"
+        password: "$REPO_PW"

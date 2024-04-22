@@ -5,7 +5,11 @@
 
 
 
-This project is intended to wrap [standard-app-secret-generation](https://github.com/mednax-it/standard-app-secret-generation) in a orb to simplify use.  The orb is intended to only do a git checkout, terraform init, and terraform apply.  Additional readme edits will come as we build functionality.
+This project is intended to wrap [standard-app-secret-generation](https://github.com/mednax-it/standard-app-secret-generation) in a orb to simplify use.  The orb is intended to only do a git checkout, terraform init, and terraform apply.  
+
+Please see `src/examples/example.yml` for how to use the orb.
+
+You must be a Pediatrix team member for this to work since it relies on an image that is only available to Pediatrix team members.
 
 ---
 

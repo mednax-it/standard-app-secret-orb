@@ -7,23 +7,20 @@
 # Use which instead of command -v for wider coverage of envs
 set -e
 
-if which az > /dev/null;
-then
-  echo "Azure CLI installed already."
-else
-  apk add py3-pip
-  apk add gcc musl-dev python3-dev libffi-dev openssl-dev cargo make
-  pip install --break-system-packages --upgrade pip
-  pip install --break-system-packages azure-cli
-  echo "Azure CLI is now installed."
-fi
-
 AZURE_TENANT=$(circleci env subst "${AZURE_TENANT}")
 AZURE_SERVICE_PRINCIPLE=$(circleci env subst "${AZURE_SERVICE_PRINCIPLE}")
 AZURE_SERVICE_PRINCIPLE_PASSWORD=$(circleci env subst "${AZURE_SERVICE_PRINCIPLE_PASSWORD}")
+TF_VAR_app_registration_id=$(circleci env subst "${PARAM_APP_REGISTRATION_ID}")
+TF_VAR_resource_group_name=$(circleci env subst "${PARAM_RESOURCE_GROUP_NAME}")
+TF_VAR_key_vault_name=$(circleci env subst "${PARAM_KEY_VAULT_NAME}")
+TF_VAR_key_name=$(circleci env subst "${PARAM_KEY_NAME}")
 export AZURE_TENANT
 export AZURE_SERVICE_PRINCIPLE
 export AZURE_SERVICE_PRINCIPLE_PASSWORD
+export TF_VAR_app_registration_id
+export TF_VAR_resource_group_name
+export TF_VAR_key_vault_name
+export TF_VAR_key_name
 
 echo "Logging in to az cli"
 az login --service-principal \
@@ -31,16 +28,6 @@ az login --service-principal \
     -u "$AZURE_SERVICE_PRINCIPLE" \
     -p "$AZURE_SERVICE_PRINCIPLE_PASSWORD"
 az account set --subscription "$SUBSCRIPTION"
-
-
-TF_VAR_app_registration_id=$(circleci env subst "${PARAM_APP_REGISTRATION_ID}")
-TF_VAR_resource_group_name=$(circleci env subst "${PARAM_RESOURCE_GROUP_NAME}")
-TF_VAR_key_vault_name=$(circleci env subst "${PARAM_KEY_VAULT_NAME}")
-TF_VAR_key_name=$(circleci env subst "${PARAM_KEY_NAME}")
-export TF_VAR_app_registration_id
-export TF_VAR_resource_group_name
-export TF_VAR_key_vault_name
-export TF_VAR_key_name
 
 git clone git@github.com:mednax-it/standard-app-secret-generation.git
 terraform -chdir=./standard-app-secret-generation init
