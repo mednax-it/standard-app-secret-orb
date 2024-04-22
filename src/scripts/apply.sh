@@ -18,12 +18,14 @@ else
   echo "Azure CLI is now installed."
 fi
 
+
 echo "Logging in to az cli"
 az login --service-principal \
-    --tenant "$AZURE_SP_TENANT" \
-    -u "$AZURE_SP" \
-    -p "$AZURE_SP_PASSWORD"
+    --tenant "$AZURE_TENANT" \
+    -u "$AZURE_SERVICE_PRINCIPLE" \
+    -p "$AZURE_SERVICE_PRINCIPLE_PASSWORD"
 az account set --subscription "$SUBSCRIPTION"
+
 
 TF_VAR_app_registration_id=$(circleci env subst "${PARAM_APP_REGISTRATION_ID}")
 TF_VAR_resource_group_name=$(circleci env subst "${PARAM_RESOURCE_GROUP_NAME}")
