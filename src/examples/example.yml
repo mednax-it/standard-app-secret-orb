@@ -11,7 +11,8 @@ usage:
     secret-generation-example:
       jobs:
         - standard-app-secret-orb/create_secret:
-            context: 'your-context'
+            context:
+              - your-context
             app_registration_id: 'example-app-registration-client-id'
             resource_group_name: 'example-resource-group'
             key_vault_name: 'example-key-vault-name'
