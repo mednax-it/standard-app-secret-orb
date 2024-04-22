@@ -4,8 +4,11 @@
 [![CircleCI Build Status](https://circleci.com/gh/mednax-it/standard-app-secret-orb.svg?style=shield "CircleCI Build Status")](https://circleci.com/gh/mednax-it/standard-app-secret-orb) [![CircleCI Orb Version](https://badges.circleci.com/orbs/mednax/standard-app-secret-orb.svg)](https://circleci.com/developer/orbs/orb/mednax/standard-app-secret-orb) [![GitHub License](https://img.shields.io/badge/license-MIT-lightgrey.svg)](https://raw.githubusercontent.com/mednax-it/standard-app-secret-orb/master/LICENSE) [![CircleCI Community](https://img.shields.io/badge/community-CircleCI%20Discuss-343434.svg)](https://discuss.circleci.com/c/ecosystem/orbs)
 
 
+This project is intended to wrap [standard-app-secret-generation](https://github.com/mednax-it/standard-app-secret-generation) in a orb to simplify use.  The orb is intended to only do a git checkout, terraform init, and terraform apply.  
 
-This project is intended to wrap [standard-app-secret-generation](https://github.com/mednax-it/standard-app-secret-generation) in a orb to simplify use.  Additional readme edits will come as we build functionality.
+Please see `src/examples/example.yml` for how to use the orb.
+
+You must be a Pediatrix team member for this to work since it relies on an image that is only available to Pediatrix team members.
 
 ---
 
