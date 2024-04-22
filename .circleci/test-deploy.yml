@@ -28,10 +28,10 @@ jobs:
   # You may want to add additional validation steps to ensure the commands are working as expected.
   command-test:
     docker:
-      - image: 'mednax/python-base-orb-image:latest'
+      - image: 'mednax.azurecr.io/mednax/python-base-orb-image:latest'
         auth:
-            username: $REPO_USER
-            password: $REPO_PW
+            username: "$REPO_USER"
+            password: "$REPO_PW"
     steps:
       - run:
           command: echo "$AZURE_SP_TENANT"

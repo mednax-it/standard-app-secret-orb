@@ -21,9 +21,9 @@ fi
 
 echo "Logging in to az cli"
 az login --service-principal \
-    --tenant "$AZURE_TENANT" \
-    -u "$AZURE_SERVICE_PRINCIPLE" \
-    -p "$AZURE_SERVICE_PRINCIPLE_PASSWORD"
+    --tenant $(circleci env subst "${AZURE_TENANT}" \
+    -u $(circleci env subst "${AZURE_SERVICE_PRINCIPLE}" \
+    -p $(circleci env subst "${AZURE_SERVICE_PRINCIPLE_PASSWORD}"
 az account set --subscription "$SUBSCRIPTION"
 
 
