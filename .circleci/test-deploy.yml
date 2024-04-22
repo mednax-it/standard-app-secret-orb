@@ -6,8 +6,6 @@ orbs:
   # The orb definition is intentionally not included here. It will be injected into the pipeline.
   standard-app-secret-orb: {}
 
-context:
-  - mednax-global
 
 # Use this tag to ensure test jobs always run,
 # even though the downstream publish job will only run on release tags.
@@ -26,6 +24,7 @@ jobs:
   # Create jobs to test the commands of your orbs.
   # You may want to add additional validation steps to ensure the commands are working as expected.
   command-test:
+    context: mednax-global
     docker:
       - image: 'hashicorp/terraform:1.8.1'
     steps:
