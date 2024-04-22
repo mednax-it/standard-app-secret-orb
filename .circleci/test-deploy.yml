@@ -35,9 +35,9 @@ jobs:
           key_vault_name: 'examplekeyvaulttesting'
           key_name: 'example-key-name'
           subscription: 'Sandbox'
-          azure_tenant: "${AZURE_SP_TENANT}"
-          azure_service_principle: "${AZURE_SP}"
-          azure_service_principle_password: "${AZURE_SP_PASSWORD}"
+          azure_tenant: $AZURE_SP_TENANT
+          azure_service_principle: $AZURE_SP
+          azure_service_principle_password: $AZURE_SP_PASSWORD
 
 workflows:
   test-deploy:
@@ -45,7 +45,8 @@ workflows:
       # Make sure to include "filters: *filters" in every test job you want to run as part of your deployment.
       # Test your orb's commands in a custom job and test your orb's jobs directly as a part of this workflow.
       - command-test:
-          context: mednax-global
+          context:
+            - mednax-global
           filters: *filters
       # The orb must be re-packed for publishing, and saved to the workspace.
       - orb-tools/pack:
