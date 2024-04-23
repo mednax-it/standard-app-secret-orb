@@ -14,9 +14,11 @@ TF_VAR_app_registration_id=$(circleci env subst "${PARAM_APP_REGISTRATION_ID}")
 TF_VAR_resource_group_name=$(circleci env subst "${PARAM_RESOURCE_GROUP_NAME}")
 TF_VAR_key_vault_name=$(circleci env subst "${PARAM_KEY_VAULT_NAME}")
 TF_VAR_key_name=$(circleci env subst "${PARAM_KEY_NAME}")
+SUBSCRIPTION=$(circleci env subst "${SUBSCRIPTION}")
 export AZURE_TENANT
 export AZURE_SERVICE_PRINCIPLE
 export AZURE_SERVICE_PRINCIPLE_PASSWORD
+export SUBSCRIPTION
 export TF_VAR_app_registration_id
 export TF_VAR_resource_group_name
 export TF_VAR_key_vault_name
@@ -29,6 +31,9 @@ az login --service-principal \
     -p "$AZURE_SERVICE_PRINCIPLE_PASSWORD"
 az account set --subscription "$SUBSCRIPTION"
 
+echo "Cloning terraform repo"
 git clone git@github.com:mednax-it/standard-app-secret-generation.git
+
+echo "Apply the terraform to check and potentially create/store the secret"
 terraform -chdir=./standard-app-secret-generation init
 terraform -chdir=./standard-app-secret-generation apply -auto-approve
