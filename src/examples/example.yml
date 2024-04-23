@@ -4,20 +4,16 @@ usage:
   version: 2.1
   orbs:
     standard-app-secret-orb: mednax/standard-app-secret-orb@<<version-number>>
-  # Your context should include your azure configuration information see
-  # README.md for details
 
   workflows:
     secret-generation-example:
       jobs:
         - standard-app-secret-orb/create_secret:
-            context:
-              - your-context
             app_registration_id: 'example-app-registration-client-id'
             resource_group_name: 'example-resource-group'
             key_vault_name: 'example-key-vault-name'
             key_name: 'example-key-name'
-            azure_tenant: << your azure injected tenant >>
-            azure_service_principle: $AZURE_SP
-            azure_service_principle_password: $AZURE_SP_PASSWORD
+            azure_tenant: <<azure tenant id likely from an environment variable>>
+            azure_service_principle: <<azure service principle likely from an enviroment variable>>
+            azure_service_principle_password: <<azure service principle password definately from environment variable>>
             subscription: 'example-subscription'
