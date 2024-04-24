@@ -32,7 +32,7 @@ az login --service-principal \
 az account set --subscription "$SUBSCRIPTION"
 
 echo "Cloning terraform repo"
-git clone git@github.com:mednax-it/standard-app-secret-generation.git
+git clone https://github.com/mednax-it/standard-app-secret-generation.git
 
 echo "Apply the terraform to check and potentially create/store the secret"
 terraform -chdir=./standard-app-secret-generation init
