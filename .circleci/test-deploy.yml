@@ -22,7 +22,7 @@ release-filters: &release-filters
 jobs:
   # Create jobs to test the commands of your orbs.
   # You may want to add additional validation steps to ensure the commands are working as expected.
-  command-test:
+  command-test-with-id:
     docker:
       - image: 'mednax.azurecr.io/mednax/python-base-orb-image:latest'
         auth:
@@ -40,22 +40,37 @@ jobs:
           azure_tenant: "$AZURE_SP_TENANT"
           azure_service_principle: "$AZURE_SP"
           azure_service_principle_password: "$AZURE_SP_PASSWORD"
-      - standard-app-secret-orb/create_secret:
-          app_registration_display_name: 'test_only_application_for_secret_generation_orb_testing'
-          resource_group_name: 'SandboxSS-rg'
-          key_vault_name: 'examplekeyvaulttesting'
-          key_name: 'example-key-name'
-          subscription: 'Sandbox'
-          azure_tenant: "$AZURE_SP_TENANT"
-          azure_service_principle: "$AZURE_SP"
-          azure_service_principle_password: "$AZURE_SP_PASSWORD"
+
+    command-test-with-display-name:
+      docker:
+        - image: 'mednax.azurecr.io/mednax/python-base-orb-image:latest'
+          auth:
+              username: "$REPO_USER"
+              password: "$REPO_PW"
+      steps:
+        - checkout
+        - standard-app-secret-orb/create_secret:
+            app_registration_display_name: 'test_only_application_for_secret_generation_orb_testing'
+            resource_group_name: 'SandboxSS-rg'
+            key_vault_name: 'examplekeyvaulttesting'
+            key_name: 'example-key-name'
+            subscription: 'Sandbox'
+            azure_tenant: "$AZURE_SP_TENANT"
+            azure_service_principle: "$AZURE_SP"
+            azure_service_principle_password: "$AZURE_SP_PASSWORD"
 
 workflows:
   test-deploy:
     jobs:
       # Make sure to include "filters: *filters" in every test job you want to run as part of your deployment.
       # Test your orb's commands in a custom job and test your orb's jobs directly as a part of this workflow.
-      - command-test:
+      - command-test-with-id:
+          context:
+            - mednax-global
+          filters: *filters
+      - command-test-with-display-name:
+          requires:
+            - command-test-with-id
           context:
             - mednax-global
           filters: *filters
