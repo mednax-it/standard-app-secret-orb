@@ -84,6 +84,7 @@ workflows:
           # Ensure this job requires all test jobs and the pack job.
           requires:
             - orb-tools/pack
-            - command-test
+            - command-test-with-id
+            - command-test-with-display-name
           context: orb-publishing
           filters: *release-filters
