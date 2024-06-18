@@ -92,7 +92,7 @@ workflows:
       - standard-app-secret-orb/create_secret:
           name: 'job-test-with-display-name'
           requires:
-            - command-test-with-display-name
+            - job-test-with-id
           context:
             - mednax-global
           app_registration_display_name: 'test_only_application_for_secret_generation_orb_testing'
