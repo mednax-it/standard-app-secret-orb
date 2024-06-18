@@ -40,6 +40,15 @@ jobs:
           azure_tenant: "$AZURE_SP_TENANT"
           azure_service_principle: "$AZURE_SP"
           azure_service_principle_password: "$AZURE_SP_PASSWORD"
+      - standard-app-secret-orb/create_secret:
+          app_registration_display_name: 'test_only_application_for_secret_generation_orb_testing'
+          resource_group_name: 'SandboxSS-rg'
+          key_vault_name: 'examplekeyvaulttesting'
+          key_name: 'example-key-name'
+          subscription: 'Sandbox'
+          azure_tenant: "$AZURE_SP_TENANT"
+          azure_service_principle: "$AZURE_SP"
+          azure_service_principle_password: "$AZURE_SP_PASSWORD"
 
 workflows:
   test-deploy:
