@@ -74,6 +74,19 @@ workflows:
           context:
             - mednax-global
           filters: *filters
+      - standard-app-secret-orb/create_secret:
+          name: 'job-test-with-id'
+          requires:
+            - command-test-with-display-name
+          app_registration_id: '424ed44e-8bf6-48ca-9150-cf03c9447ba1'
+          resource_group_name: 'SandboxSS-rg'
+          key_vault_name: 'examplekeyvaulttesting'
+          key_name: 'example-key-name'
+          subscription: 'Sandbox'
+          azure_tenant: "$AZURE_SP_TENANT"
+          azure_service_principle: "$AZURE_SP"
+          azure_service_principle_password: "$AZURE_SP_PASSWORD"
+          filters: *filters
       # The orb must be re-packed for publishing, and saved to the workspace.
       - orb-tools/pack:
           filters: *release-filters
@@ -86,5 +99,6 @@ workflows:
             - orb-tools/pack
             - command-test-with-id
             - command-test-with-display-name
+            - job-test-with-id
           context: orb-publishing
           filters: *release-filters
